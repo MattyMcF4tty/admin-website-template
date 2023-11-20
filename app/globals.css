@@ -2,26 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    background-color: rgb(245,245,245);
+}
+
+h1 {
+    @apply text-company-color-primary;
+    @apply font-semibold;
+    @apply text-4xl;
+}
+
+h5 {
+    @apply text-gray-500;
+    @apply font-semibold;
+}
+  
+input {
+    @apply outline-none;
+    @apply placeholder:italic;
+    @apply px-1;
+    @apply border-company-color-primary;
+}
+
+button {
+    @apply bg-company-color-primary;
+    @apply text-white;
+    @apply disabled:bg-disabled;
+    @apply p-2;
+    @apply rounded-md;
+    @apply text-center;
+    @apply hover:bg-opacity-75;
+    @apply disabled:hover:bg-opacity-100;
 }
