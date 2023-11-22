@@ -34,13 +34,15 @@ input {
     @apply border-company-color-primary;
 }
 
-button {
+.link-style {
     @apply bg-company-color-primary;
-    @apply text-white;
-    @apply disabled:bg-disabled;
-    @apply p-2;
-    @apply rounded-md;
-    @apply text-center;
     @apply hover:bg-opacity-75;
-    @apply disabled:hover:bg-opacity-100;
+    @apply text-white;
+    @apply px-4;
+    @apply rounded-sm;
+    @apply py-1;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    min-width: 100px;
 }
