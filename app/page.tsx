@@ -1,6 +1,9 @@
+import { NextPage } from "next";
 import Link from "next/link";
 
-export default function Home() {
+import React from 'react'
+
+const Home:NextPage = () => {
 
   return (
     <main className="flex flex-col min-h-screen w-full items-center justify-center">
@@ -14,10 +17,12 @@ export default function Home() {
         </div>
 
         <div className="flex justify-evenly">
-          <Link href="admin" className="link-style">User</Link>
-          <Link href="admin" className="link-style">Admin</Link>
+          <Link href="admin" className="link-button-style">User</Link>
+          <Link href="admin" className="link-button-style">Admin</Link>
         </div>
       </div>
     </main>
   )
 }
+
+export default Home

@@ -34,7 +34,7 @@ input {
     @apply border-company-color-primary;
 }
 
-.link-style {
+.link-button-style {
     @apply bg-company-color-primary;
     @apply hover:bg-opacity-75;
     @apply text-white;
@@ -44,5 +44,8 @@ input {
     @apply flex;
     @apply justify-center;
     @apply items-center;
-    min-width: 100px;
+    @apply min-w-[100px];
 }
+
+
+  

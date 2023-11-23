@@ -9,7 +9,7 @@ interface PrebookCounterProps {
   description: string;
 }
 
-const PrebookCounter = ({counterText, counter}: PrebookCounterProps) => {
+const PrebookCounter = ({counterText, counter, description}: PrebookCounterProps) => {
   const [showDescription, setShowDecription] = useState(false);
 
   return (
@@ -20,7 +20,7 @@ const PrebookCounter = ({counterText, counter}: PrebookCounterProps) => {
         onClick={() => setShowDecription(!showDescription)}/>
         {showDescription && (
           <div className='bg-white absolute'>
-            <span className='break-words text-xs overflow-y-scroll'>Jisfjoignap dsdf sdf sds df sdgoina per ognarpogniarg</span>
+            <span className='break-words text-xs overflow-y-scroll'>{description}</span>
           </div>
         )}
     </div>
