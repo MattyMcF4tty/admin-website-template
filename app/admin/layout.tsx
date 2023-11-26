@@ -9,10 +9,9 @@ export default function AdminLayout({
 
   return (
     <>
-      <AdminNavbar />
       <AdminSidebar />
-      {/* The sidebar is 12 in width. Therefor the left padding should always be 12 higher than other paddings */}
-      <main className="pl-[13.5rem] py-6 pr-6">{children}</main>
+      <AdminNavbar />
+      <main className="pl-[13.5rem] pt-[4.5rem] pb-6 pr-6">{children}</main>
     </>
   );
 }

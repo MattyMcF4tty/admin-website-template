@@ -1,9 +1,10 @@
 import React from 'react'
+import UserDropdown from '../userDropdown'
 
 const AdminNavbar = () => {
   return (
-    <nav className='w-full bg-white z-100 h-12 flex flex-row shadow-lg border-b-2 border-company-color-primary'>
-              {/* Logo */}
+    <div className='w-full fixed bg-white z-100 h-12 flex flex-row justify-between shadow-lg border-b-2 border-company-color-primary'>
+      {/* Logo */}
       <div className='flex flex-row items-center'>
         <img src="/company-logo.png" alt="Company Logo"  className='h-full'/>
         <div className='flex flex-col'>
@@ -11,7 +12,8 @@ const AdminNavbar = () => {
         <p className='text-xs text-black font-semibold'>Admin</p>
         </div>
       </div>
-    </nav>
+      {/* User */}
+    </div>
   )
 }
 
