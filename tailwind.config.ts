@@ -17,7 +17,7 @@ const config: Config = {
         "disabled": "#DCDCDC"
       },
       boxShadow: {
-        'default': 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
+        'default': 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
       }
     }
   },
