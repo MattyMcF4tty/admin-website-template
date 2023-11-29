@@ -24,9 +24,9 @@ const PasswordInput = ({setPassword}: PasswordInputProps) => {
                 <FontAwesomeIcon icon={faUser} className={`mr-2 ${enabled ? "text-company-color-primary" : "text-disabled"} duration-100`}/>
 
                 <div className='relative flex items-center'>
-                    <h5 className={`z-0 absolute ${enabled ? "bottom-6 text-xs" : "bottom-0"} duration-150 pl-1`}>Password</h5>
+                    <h5 className={`z-0 absolute ${enabled ? "bottom-6 text-xs" : "bottom-0"} duration-150 pl-1 text-gray-500 font-semibold`}>Password</h5>
                     <input 
-                    className="w-full z-10 bg-transparent" 
+                    className="w-full z-10 bg-transparent outline-none placeholder:italic px-1 border-company-color-primary" 
                     id="password" name="password"
                     type="password"
                     onFocus={() => setFocused(true)}

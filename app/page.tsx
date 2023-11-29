@@ -7,7 +7,7 @@ const Home:NextPage = () => {
 
   return (
     <main className="flex flex-col min-h-screen w-full items-center justify-center">
-      <h1>Select mode</h1>
+      <h1 className="text-company-color-primary font-semibold text-4xl">Select mode</h1>
 
       <div className='flex bg-white p-4 rounded-md mt-2 flex-col shadow-default'>
         <div className="mb-6 flex flex-col items-center">
@@ -17,8 +17,8 @@ const Home:NextPage = () => {
         </div>
 
         <div className="flex justify-evenly">
-          <Link href="admin" className="link-button-style">User</Link>
-          <Link href="admin" className="link-button-style">Admin</Link>
+          <Link href="admin" className="bg-company-color-primary hover:bg-opacity-75 text-white px-4 rounded-sm py-1 flex justify-center items-center min-w-[100px]">User</Link>
+          <Link href="admin" className="bg-company-color-primary hover:bg-opacity-75 text-white px-4 rounded-sm py-1 flex justify-center items-center min-w-[100px]">Admin</Link>
         </div>
       </div>
     </main>

@@ -1,4 +1,4 @@
-import AdminNavbar from "../components/admin/navigation/adminNavbar";
+import AdminNavbar from "../components/admin/navigation/navbar/adminNavbar";
 import AdminSidebar from "../components/admin/navigation/sidebar/adminSidebar";
 export default function AdminLayout({
     children,
