@@ -8,18 +8,18 @@ export interface PrebookSchema {
     deliveredDate: Date | null;
 }
 
-export class Prebook {
+export class Prebook implements PrebookSchema{
 
     // Required information
-    private id: number;
-    private bookerId: string;
-    private deliveryDate: Date;
-    private vehicleTypeId: number;
+    id: number;
+    bookerId: string;
+    deliveryDate: Date;
+    vehicleTypeId: number;
 
     // Delivery information
-    private deliveryPersonId: string | null;
-    private deliveredDate: Date | null;
-    private deliveredVehicle: number | null
+    deliveryPersonId: string | null;
+    deliveredDate: Date | null;
+    deliveredVehicle: number | null
 
 
     constructor(id: number, bookerId: string, deliveryDate: Date, vehicleTypeId: number, deliveryPersonId?: string | null, deliveredDate?: Date | null, deliveredVehicle?: number | null) {
@@ -41,18 +41,37 @@ export class Prebook {
 
     }
 
-    async VehicleType() {
+    async GetVehicle() {
 
     }
 
-    ChangeDate(newDate: Date) {
-
+    IsDelivered() {
+        if (!this.deliveredVehicle) {
+            return false
+        }
+        return true
     }
 
-    ChangeVehicle(vehicleId: number) {
-
+    get update() {
+        return new UpdatePrebook
     }
+
+
+
 }
 
 
-const prebook = new Prebook(232, "sdfsdf", new Date(), 1, null)
+/**
+ * Update allows you to update current prebooks½½ values
+ */
+class UpdatePrebook {
+    constructor() {}
+
+    async ChangeVehicle(newVehicleId: number) {
+        // logic to update the vehicle
+    }
+
+    async ChangeDate(newDate: Date): Promise<void> {
+        // logic to update the date
+    }
+}
