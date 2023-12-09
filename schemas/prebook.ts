@@ -52,11 +52,13 @@ export class Prebook implements PrebookSchema{
         return true
     }
 
-    get update() {
-        return new UpdatePrebook
+    get Update() {
+        return new PrebookUpdater(this)
     }
 
-
+    get Get() {
+        return new PrebookGetter(this)
+    }
 
 }
 
@@ -64,14 +66,42 @@ export class Prebook implements PrebookSchema{
 /**
  * Update allows you to update current prebooks½½ values
  */
-class UpdatePrebook {
-    constructor() {}
-
-    async ChangeVehicle(newVehicleId: number) {
-        // logic to update the vehicle
+class PrebookUpdater {
+    prebook: Prebook
+    constructor(prebook: Prebook) {
+        this.prebook = prebook
     }
 
-    async ChangeDate(newDate: Date): Promise<void> {
-        // logic to update the date
+    async orderDetails(newBookerId: number, newDeliveryDate: Date, newVehicleId: number) {
+
     }
+
+    async deliveryDetails(newDeliveryPersonId: number, newDeliveryDate: Date, newVehicleId: number) {
+
+    }
+
+}
+
+class PrebookGetter {
+    prebook: Prebook
+    constructor(prebook: Prebook) {
+        this.prebook = prebook
+    }
+
+    async DeliveryPerson() {
+
+    }
+
+    async Booker() {
+
+    }
+
+    async DeliveredVehicle() {
+
+    }
+
+    async OrderedVehicleType() {
+
+    }
+
 }

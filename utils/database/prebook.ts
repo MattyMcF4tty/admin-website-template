@@ -1,17 +1,25 @@
 import { Prebook, PrebookSchema } from "@/schemas/prebook";
-import { GetClient } from "./configs/supabaseConfig";
+import { getClient } from "./configs/supabaseConfig";
+import { ErrorNotFound } from "@/schemas/errors";
 
 const prebookTable = 'prebooks';
 
-async function GetPrebook(prebookId: number) {
-    const supaClient = GetClient();
+export async function fetchPrebook(prebookId: number) {
+    const supaClient = getClient();
 
-    const tableData = (await supaClient.from(prebookTable).select().eq("id", prebookId)).data;
+    const { data, error } = await supaClient.from('prebooks').select().eq("id", `${prebookId}`)
 
-    if (!tableData || tableData.length <= 0) {
-        return null
+
+    if (error) {
+        console.error("Supa error:", error)
     }
 
-    const prebookData = tableData[0] as PrebookSchema;
-    const prebook = new Prebook(prebookData.id, prebookData.bookerId, prebookData.deliveryDate, prebookData.vehicleTypeId)
+    console.log(data)
+    if (!data || data.length <= 0) {
+        throw new ErrorNotFound(`Prebook with id ${prebookId} does not exist.`)
+    }
+
+    const prebookData = data[0] as PrebookSchema;
+
+    return new Prebook(prebookData.id, prebookData.bookerId, prebookData.deliveryDate, prebookData.vehicleTypeId)
 }
