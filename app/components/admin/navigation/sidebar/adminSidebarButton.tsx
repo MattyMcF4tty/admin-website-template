@@ -21,15 +21,15 @@ const SidebarButton = ({ text, href, icon }: SidebarButtonProps) => {
 
   if (isActive) {
     return (
-      <p className='h-10 w-[104%] text-white bg-company-color-primary shadow-default flex items-center pl-4 rounded-r-md'>
+      <p className='h-10 w-full text-white bg-company-color-primary shadow-default flex items-center pl-4 rounded-r-md'>
         <FontAwesomeIcon className='w-5 mr-3' icon={icon}/>
         {text}
       </p>
     )
   }
   return (
-    <Link href={href} className='duration-100 text-black flex items-center w-full h-10 text-md pl-4
-    hover:w-[104%] hover:bg-company-color-primary hover:text-white hover:shadow-default hover:rounded-r-md'>
+    <Link href={'/admin/' + href} className='duration-100 text-black flex items-center w-full h-10 text-md pl-4
+    hover:w-full hover:bg-company-color-primary hover:text-white hover:shadow-default hover:rounded-r-md'>
         <FontAwesomeIcon className='w-5 mr-3' icon={icon}/>
         {text}
     </Link>  

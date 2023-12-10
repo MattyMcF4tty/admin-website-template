@@ -1,43 +1,49 @@
 export interface PrebookSchema {
     id: number;
-    bookerId: string;
-    deliveryDate: Date;
-    vehicleTypeId: number;
+    customerId: string;
+    scheduledDeliveryDate: Date;
+    bookedVehicleTypeId: number;
 
-    deliveryPersonId: string | null;
+    delivererId: string | null;
     deliveredDate: Date | null;
+    deliveredVehicleId: number | null;
+
+    createdAt: Date | null;
 }
 
 export class Prebook implements PrebookSchema{
 
     // Required information
     id: number;
-    bookerId: string;
-    deliveryDate: Date;
-    vehicleTypeId: number;
+    customerId: string;
+    scheduledDeliveryDate: Date;
+    bookedVehicleTypeId: number;
 
     // Delivery information
-    deliveryPersonId: string | null;
+    delivererId: string | null;
     deliveredDate: Date | null;
-    deliveredVehicle: number | null
+    deliveredVehicleId: number | null
 
+    createdAt: Date | null;
 
-    constructor(id: number, bookerId: string, deliveryDate: Date, vehicleTypeId: number, deliveryPersonId?: string | null, deliveredDate?: Date | null, deliveredVehicle?: number | null) {
+    constructor(id: number, customerId: string, scheduledDeliveryDate: Date, bookedVehicleTypeId: number, delivererId?: string | null, deliveredDate?: Date | null, deliveredVehicleId?: number | null, createdAt?: Date | null) {
         this.id = id;
-        this.bookerId = bookerId;
-        this.deliveryDate = deliveryDate;
-        this.vehicleTypeId = vehicleTypeId;
+        this.customerId = customerId;
+        this.scheduledDeliveryDate = scheduledDeliveryDate;
+        this.bookedVehicleTypeId = bookedVehicleTypeId;
 
-        this.deliveryPersonId = deliveryPersonId || null;
+        this.delivererId = delivererId || null;
         this.deliveredDate = deliveredDate || null;
-        this.deliveredVehicle = deliveredVehicle || null;
+        this.deliveredVehicleId = deliveredVehicleId || null;
+
+        this.createdAt = createdAt || null;
     }
 
-    Delete() {
+    cancel() {
 
     }
 
-    Deliver(userId:string, vehicleId:string) {
+    deliver(userId:string, vehicleId:string) {
 
     }
 
@@ -45,18 +51,31 @@ export class Prebook implements PrebookSchema{
 
     }
 
-    IsDelivered() {
-        if (!this.deliveredVehicle) {
+    isDelivered() {
+        if (!this.deliveredDate) {
             return false
         }
         return true
     }
 
-    get Update() {
+    toPlainObject(): PrebookSchema{
+        return {
+            id: this.id, 
+            customerId: this.customerId, 
+            scheduledDeliveryDate: this.scheduledDeliveryDate,
+            bookedVehicleTypeId: this.bookedVehicleTypeId,
+            delivererId: this.delivererId,
+            deliveredDate: this.deliveredDate,
+            deliveredVehicleId: this.deliveredVehicleId,
+            createdAt: this.createdAt
+        }
+    }
+
+    get update() {
         return new PrebookUpdater(this)
     }
 
-    get Get() {
+    get get() {
         return new PrebookGetter(this)
     }
 

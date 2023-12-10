@@ -12,7 +12,7 @@ export default function AdminLayout({
         <AdminNavbar />
         <AdminSidebar />
       </nav>
-      <main className="pl-[13.5rem] pt-[4.5rem] pb-6 pr-6">{children}</main>
+        <main className="pl-[13.5rem] pt-[4.5rem] pb-6 pr-6">{children}</main>
     </>
   );
 }
