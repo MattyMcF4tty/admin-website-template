@@ -35,7 +35,7 @@ const AdminSidebarDropdown = ({text, pages}: {text:string, pages: string[]}) => 
         }}
       >
         {text}
-        <FontAwesomeIcon icon={faChevronUp} className={`ml-2 duration-150 ${active ? 'rotate-180' : 'font-thin'}`}/>
+        <FontAwesomeIcon icon={faChevronUp} className={`ml-2 duration-150 ${active ? 'rotate-180' : 'font-thin'}`} size='sm'/>
       </button>
 
       {active && (
@@ -52,7 +52,7 @@ const AdminSidebarDropdown = ({text, pages}: {text:string, pages: string[]}) => 
 export default AdminSidebarDropdown;
 
 // DropdownButton component
-export const DropdownButton = ({text, buttonPath}: {text:string, buttonPath:string}) => {
+const DropdownButton = ({text, buttonPath}: {text:string, buttonPath:string}) => {
   const path = `${buttonPath}/${text.toLowerCase()}`;
   const active = usePathname().includes(path);
 
