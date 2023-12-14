@@ -1,5 +1,7 @@
 'use client';
 
+import { faAngleUp, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
@@ -33,7 +35,9 @@ const AdminSidebarDropdown = ({text, pages}: {text:string, pages: string[]}) => 
         }}
       >
         {text}
+        <FontAwesomeIcon icon={faChevronUp} className={`ml-2 duration-150 ${active ? 'rotate-180' : 'font-thin'}`}/>
       </button>
+
       {active && (
         <div>
           {pages.map((pageName) => (
