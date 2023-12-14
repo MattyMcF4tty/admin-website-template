@@ -107,19 +107,19 @@ class PrebookGetter {
         this.prebook = prebook
     }
 
-    async DeliveryPerson() {
+    async Deliverer() {
 
     }
 
-    async Booker() {
-
+    async Customer() {
+        
     }
 
     async DeliveredVehicle() {
 
     }
 
-    async OrderedVehicleType() {
+    async BookedVehicleType() {
 
     }
 
