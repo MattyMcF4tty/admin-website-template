@@ -5,7 +5,6 @@ import { cache } from "react";
 
 const prebookTable = 'prebooks';
 
-
 function mapServerDataToPrebookSchema(serverData: any): PrebookSchema {
     return {
         id: serverData.id,
@@ -53,7 +52,7 @@ export async function fetchPrebook(prebookId: number) {
     return schemaToPrebook(prebookData)
 }
 
-export async function fetchAllPrebooks() {
+export const fetchAllPrebooks = async() => {
     const supaClient = getClient();
 
     const { data, error } = await supaClient.from(prebookTable).select().gte('id', '0')

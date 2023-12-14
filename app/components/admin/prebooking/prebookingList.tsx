@@ -12,32 +12,44 @@ const PrebookingList = ({prebookingData}: PrebookingListProps) => {
   const prebooks = prebookingData.map((data) => {
     return schemaToPrebook(data)
   })
+
+  var i = 0;
+  while (i < 30) {
+    prebooks.push(prebooks[0])
+    i++
+  }
   
   return (
-    <div className='w-full h-full'>
-      SEARCH
+<div className='w-full h-[calc(100vh-8rem)] border-2'>
+  SEARCH
 
-      <table className='rounded-md'>
-        <thead>
-          <tr className='bg-company-color-primary '>
-            <th className='rounde'>Id</th>
-            <th>customerId</th>
-          </tr>
-        </thead>
-        <tbody className='rounded-b-md bg-white'>
-          {prebooks.map((prebook) => (
-            <tr key={prebook.id} className='bg-opacity-0'>
-              <td className='border-collapse: separate'>
+  {/* Wrap table in a div to control scrolling */}
+  <div className="h-full">
+    <table className='rounded-md w-full'>
+      <thead className='sticky top-0 bg-company-color-primary'>
+        <tr>
+          <th>Id</th>
+          <th>customerId</th>
+        </tr>
+      </thead>
+      <div>
+        <tbody className='bg-white'>
+          {prebooks.map((prebook, index) => (
+            <tr key={index}>
+              <td>
                 {prebook.id}
               </td>
-              <td className='border-collapse: separate'>
+              <td>
                 {prebook.customerId}
               </td>
             </tr>
-          ))}        
+          ))}
         </tbody>
-      </table>
-    </div>
+      </div>
+    </table>
+  </div>
+</div>
+
   )
 }
 
