@@ -6,7 +6,7 @@ import AdminSidebarDropdown from './adminSidebarDropdown'
 
 const AdminSidebar = () => {
   return (
-    <div className='flex-col z-90 h-full bg-white w-48 shadow-lg relative'>
+    <div className='absolute flex-col h-screen bg-white w-48 shadow-lg mt-12'>
       {/* Buttons */}
       <div className='absolute w-full top-10'>
       {/* Prebooking */}

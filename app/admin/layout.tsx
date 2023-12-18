@@ -8,7 +8,7 @@ export default function AdminLayout({
 
   return (
     <>
-      <nav className="fixed h-screen w-screen">
+      <nav className="fixed z-50">
         <AdminNavbar />
         <AdminSidebar />
       </nav>

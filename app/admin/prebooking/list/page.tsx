@@ -9,15 +9,14 @@ const PrebookingsListPage:NextPage = cache(async() => {
   const prebookings = (await fetchAllPrebooks()).map((prebook) => {
     return prebook.toPlainObject()
   });
+  const pageUpdateDate = new Date();
 
   return (
     <div>
 
       <div className='h-[70vh]'>
-        <PrebookingList prebookingData={prebookings}/>
+        <PrebookingList prebookingData={prebookings} updateDate={pageUpdateDate}/>
       </div>
-
-      <p>Updated at {new Date().getHours()}:{new Date().getMinutes()}:{new Date().getSeconds()}</p>
     </div>
   )
 })
