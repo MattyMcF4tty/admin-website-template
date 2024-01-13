@@ -1,5 +1,4 @@
 import React from 'react'
-import UserDropdown from '../../../userDropdown'
 
 
 const AdminNavbar = () => {

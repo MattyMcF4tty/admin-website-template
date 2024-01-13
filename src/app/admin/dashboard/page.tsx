@@ -1,7 +1,5 @@
-import { Prebook } from '@/schemas/prebook'
-import { fetchPrebook } from '@/utils/database/prebook'
 import { NextPage } from 'next'
-import React, {useState} from 'react'
+import React from 'react'
 
 /* export const dynamic = 'auto',
   dynamicParams = 'auto',

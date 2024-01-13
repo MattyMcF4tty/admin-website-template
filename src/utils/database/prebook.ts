@@ -1,11 +1,11 @@
-import { Prebook, PrebookSchema } from "@/schemas/prebook";
-import { getClient } from "./configs/supabaseConfig";
-import { ErrorNotFound } from "@/schemas/errors";
+import { ErrorInternalServerError, ErrorNotFound } from "@/src/schemas/errors";
+import { Prebook, PrebookSchema } from "@/src/schemas/prebook";
 import { cache } from "react";
+import getClient from "./configs/supabaseConfig";
 
 const prebookTable = 'prebooks';
 
-function mapServerDataToPrebookSchema(serverData: any): PrebookSchema {
+function mapDataToPrebookSchema(serverData: any): PrebookSchema {
     return {
         id: serverData.id,
         customerId: serverData.customer_id,
@@ -33,6 +33,11 @@ export function schemaToPrebook(prebookSchema: PrebookSchema) {
     );
 }
 
+/**
+ * This functions fetches all data of a specific prebook, based on provided id.
+ * @param prebookId The id of the specific prebook of which you want to fetch.
+ * @returns An object of type Prebook.
+ */
 export async function fetchPrebook(prebookId: number) {
     const supaClient = getClient();
 
@@ -47,29 +52,48 @@ export async function fetchPrebook(prebookId: number) {
         throw new ErrorNotFound(`Prebook with id ${prebookId} does not exist.`)
     }
 
-    const prebookData = mapServerDataToPrebookSchema(data[0]);
+    const prebookData = mapDataToPrebookSchema(data[0]);
 
     return schemaToPrebook(prebookData)
 }
 
-export const fetchAllPrebooks = async() => {
+
+/**
+ * 
+ * @param pageIndex Current page index
+ * @param limit How many prebooks are fetched per page.
+ * @param column What column you want to query from. Default is id.
+ * @param sort What order the query should be, asc for ascending, des for descending. Default is asc.
+ * @returns Returns an array of Prebook objects.
+ */
+export const fetchPagedPrebooks = async(pageIndex: number, limit: number, column: string = 'id', sort: 'asc' | 'des' = 'asc') => {
     const supaClient = getClient();
 
-    const { data, error } = await supaClient.from(prebookTable).select().gte('id', '0')
+    // We specify how large the query should be.
+    let query = supaClient.from(prebookTable)
+    .select()
+    .range(pageIndex*limit, (pageIndex+1)*limit-1);
+
+
+    // We specify what column we want to query and what order it should be fetched in.
+    query = query.order(column, { ascending: sort === 'asc' });
+    
+
+    const { data, error } = await query;
 
     if (error) {
-        console.error("Supa error:", error)
+        throw new ErrorInternalServerError(error.message)
     }
 
     if (!data || data.length <= 0) {
-        throw new ErrorNotFound(`No prebooks where found in database.`)
+        return []
     }
 
     const prebookingData = data as PrebookSchema[];
 
     
     const prebooks = prebookingData.map((data) => {
-        const prebookData = mapServerDataToPrebookSchema(data);
+        const prebookData = mapDataToPrebookSchema(data);
 
         return schemaToPrebook(prebookData);   
     })

@@ -1,24 +1,15 @@
 'use client';
 
-import { Prebook, PrebookSchema } from '@/schemas/prebook'
-import { schemaToPrebook } from '@/utils/database/prebook';
-import React from 'react'
+import { useFetchRealtimeData } from '@/src/hooks/databaseHooks';
+import { fetchPagedPrebooks } from '@/src/utils/database/prebook';
 
-interface PrebookingListProps {
-  prebookingData: PrebookSchema[],
-  updateDate: Date
-}
+import React, { useState } from 'react'
 
-const PrebookingList = ({prebookingData, updateDate}: PrebookingListProps) => {
-  const prebooks = prebookingData.map((data) => {
-    return schemaToPrebook(data)
-  })
 
-  var i = 0;
-  while (i < 20) {
-    prebooks.push(prebooks[0])
-    i++
-  }
+const PrebookingList = () => {
+  const prebooks = await fetchPagedPrebooks(1, 20, 'delivered_date', 'asc')
+  const livePrebook = useFetchRealtimeData('prebooks')
+
   
   return (
     <div className='w-full h-full overflow-y-auto'>
