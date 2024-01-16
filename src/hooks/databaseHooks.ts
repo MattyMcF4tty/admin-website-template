@@ -10,6 +10,9 @@ export function useFetchRealtimeData (tableName:string) {
     const [data, setData] = useState<PrebookSchema | null>(null);
     const [loading, setLoading] = useState(true);
     
+
+
+
     const supabase = getClient();
     useEffect(() => {
         const channel = supabase.channel(`realtime ${normalizedTableName}`).on('postgres_changes', {

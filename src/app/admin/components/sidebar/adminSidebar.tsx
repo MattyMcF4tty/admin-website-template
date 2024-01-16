@@ -9,9 +9,14 @@ const AdminSidebar = () => {
     <div className='absolute flex-col h-screen bg-white w-48 shadow-lg mt-12'>
       {/* Buttons */}
       <div className='absolute w-full top-10'>
-      {/* Prebooking */}
+        {/* Prebooking */}
         <div className='w-full px-2' id='prebooking'>
           <AdminSidebarDropdown text='Prebooking' pages={['List', 'Config']}/>
+        </div>
+
+        {/* Vehicles */}
+        <div className='w-full px-2' id='prebooking'>
+          <AdminSidebarDropdown text='Vehicles' pages={['List', 'Config']}/>
         </div>
       </div>
 

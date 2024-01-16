@@ -1,4 +1,4 @@
-'use client';
+/* 'use client';
 
 import { useFetchRealtimeData } from '@/src/hooks/databaseHooks';
 import { fetchPagedPrebooks } from '@/src/utils/database/prebook';
@@ -15,7 +15,7 @@ const PrebookingList = () => {
     <div className='w-full h-full overflow-y-auto'>
       SEARCH
 
-      {/* Enclose table in a div for scrollable content */}
+      Enclose table in a div for scrollable content
         <table className='w-full bg-white relative'>
           <thead>
             <tr>
@@ -38,4 +38,4 @@ const PrebookingList = () => {
   );
 };
 
-export default PrebookingList
+export default PrebookingList */
