@@ -33,3 +33,25 @@ export async function updateRow(tableName:string, rowId:string, updateData:objec
     return true
 
 }
+
+export async function fetchColumn(tableName:string, column:string) {
+    const supabaseClient = getClient();
+
+    const {data, error} = await supabaseClient.from(tableName).select(column)
+    if (error) {
+        throw new ErrorInternalServerError(error.message);
+    }
+
+    return data;
+}
+
+export async function fetchRow(tableName:string, column:string, value:string) {
+    const supabaseClient = getClient();
+
+    const {data, error} = await supabaseClient.from(tableName).select().eq(column, value).limit(1).single();
+    if (error) {
+        throw new ErrorInternalServerError(error.message);
+    }
+
+    return data;
+}

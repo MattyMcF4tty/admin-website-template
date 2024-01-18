@@ -3,7 +3,7 @@ export interface VehicleTypeSchema {
     brand: string;
     model: string;
     range: number;
-    description: string;
+    description: string | null;
     fuelType: string;
     createdAt: Date;
 }

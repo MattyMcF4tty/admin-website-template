@@ -3,11 +3,11 @@ import { fetchTable } from "@/src/utils/database/database";
 import { NextPage } from "next";
 import VehicleTypeConfig from "./components/vehicleTypeConfig";
 
+export const revalidate = 0;
 
 const VehicleConfigPage:NextPage = async () => {
-  const vehicleTypes = await fetchTable('fleetVehicleType') as VehicleTypeSchema[];
+  const vehicleTypes = await fetchTable('fleetVehicleTypes') as VehicleTypeSchema[];
 
-  console.log(vehicleTypes)
   return (
     <div>
         <div>
