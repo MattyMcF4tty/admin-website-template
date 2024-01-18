@@ -1,0 +1,29 @@
+name: Nextjs Build Test
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        # Cache key includes the hash of package-lock.json to ensure cache is updated when dependencies change
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        path: ~/.npm # Path to the directory where npm dependencies are cached
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Build
+      run: npm run build
