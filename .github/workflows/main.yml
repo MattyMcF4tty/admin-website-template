@@ -1,4 +1,6 @@
-name: Nextjs-build-test
+name: Nextjs Build Test
+
+run-name: A ${{ github.event_name }} triggered a build test on ${{ github.ref_name }}
 
 on:
   workflow_dispatch:
