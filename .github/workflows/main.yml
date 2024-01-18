@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: Nextjs Build Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
