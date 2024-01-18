@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  Nextjs Build Test:
+  Nextjs-Build-Test:
     runs-on: ubuntu-latest
 
     steps:
