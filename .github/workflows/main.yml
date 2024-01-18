@@ -1,11 +1,8 @@
 name: Nextjs Build Test
 
-run-name: A ${{ github.event_name }} triggered a build test on the ${{ github.ref_name }} branch
-
 on:
   workflow_dispatch:
   push:
-  
 
 jobs:
   build:
@@ -20,9 +17,8 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v4
       with:
-        # Cache key includes the hash of package-lock.json to ensure cache is updated when dependencies change
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        path: ~/.npm # Path to the directory where npm dependencies are cached
+        path: ~/.npm
 
     - name: Set up Node.js v${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -34,4 +30,4 @@ jobs:
       run: npm install
 
     - name: Run Build
-    - run: npm run build --if-present
+      run: npm run build --if-present
