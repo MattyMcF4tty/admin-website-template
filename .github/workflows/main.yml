@@ -5,8 +5,7 @@ on:
   push:
 
 jobs:
-  build:
-    name: Nextjs Build Test
+  Nextjs Build Test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
