@@ -1,4 +1,4 @@
-name: Nextjs Build Test
+name: Nextjs-build-test
 
 on:
   workflow_dispatch:
