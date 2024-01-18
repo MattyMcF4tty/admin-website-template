@@ -1,5 +1,5 @@
-import PrebookingList from '@/src/app/admin/prebooking/list/components/prebookingList';
-import { NextPage } from 'next'
+/* import PrebookingList from '@/src/app/admin/prebooking/list/components/prebookingList';
+ */import { NextPage } from 'next'
 import React, { cache } from 'react'
 
 export const revalidate = 10
@@ -11,8 +11,8 @@ const PrebookingsListPage:NextPage = cache(async() => {
     <div>
 
       <div className='h-[70vh]'>
-        <PrebookingList/>
-      </div>
+{/*         <PrebookingList/>
+ */}      </div>
     </div>
   )
 })
