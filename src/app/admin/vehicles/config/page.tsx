@@ -15,7 +15,7 @@ const VehicleConfigPage:NextPage = async () => {
             <span>
                 On this page, you can modify rules for each vehicle type or apply changes universally. 
                 Be aware, these changes are effective immediately, impacting how all vehicles operate. 
-                Please proceed with caution and ensure accuracy when setting new rules. test
+                Please proceed with caution and ensure accuracy when setting new rules. tes
             </span>
         </div>
 
