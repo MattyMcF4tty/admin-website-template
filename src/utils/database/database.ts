@@ -14,18 +14,17 @@ export async function fetchTable(tableName: string) {
         throw new ErrorInternalServerError(error.message);
     }
 
-
     return data;
 }
 
-export async function updateRow(tableName:string, rowId:string, updateData:object) {
+export async function updateRow(tableName:string, rowId:number, updateData:object) {
     const supabaseClient = getClient();
 
 
     const { error } = await supabaseClient
     .from(tableName)
     .update(updateData)
-    .eq('id', rowId)
+    .eq('id', String(rowId))
     if (error) {
         throw new ErrorInternalServerError(error.message);
     }
@@ -34,15 +33,21 @@ export async function updateRow(tableName:string, rowId:string, updateData:objec
 
 }
 
-export async function fetchColumn(tableName:string, column:string) {
+export async function fetchTableIds(tableName: string) {
     const supabaseClient = getClient();
 
-    const {data, error} = await supabaseClient.from(tableName).select(column)
+    const { data, error } = await supabaseClient.from(tableName).select('id')
     if (error) {
         throw new ErrorInternalServerError(error.message);
     }
 
-    return data;
+    if (!data) {
+        return [];
+    }
+
+    return data.map((data) => {
+        return data.id as number
+    })
 }
 
 export async function fetchRow(tableName:string, column:string, value:string) {

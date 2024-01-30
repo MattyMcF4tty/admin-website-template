@@ -1,5 +1,5 @@
 import { VehicleTypeSchema } from "@/src/schemas/vehicleType";
-import { fetchTable } from "@/src/utils/database/database";
+import { fetchTable, fetchTableIds } from "@/src/utils/database/database";
 import { NextPage } from "next";
 import VehicleTypeConfig from "./components/vehicleTypeConfig";
 

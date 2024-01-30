@@ -4,7 +4,10 @@ import { PrebookSchema } from "../schemas/prebook";
 import { ErrorInternalServerError } from "../schemas/errors";
 
 
-export function useFetchRealtimeData (tableName:string) {
+/* Tables */
+const vehicleTable = process.env.NEXT_PUBLIC_VEHICLE_TABLE as string
+
+export function useRealtimeData(tableName:string) {
     const normalizedTableName = tableName.toLowerCase();
 
     const [data, setData] = useState<PrebookSchema | null>(null);
@@ -16,7 +19,7 @@ export function useFetchRealtimeData (tableName:string) {
     const supabase = getClient();
     useEffect(() => {
         const channel = supabase.channel(`realtime ${normalizedTableName}`).on('postgres_changes', {
-            event:'INSERT', schema:'public', table: normalizedTableName
+            event:'*', schema:'public', table: normalizedTableName
         }, (payload) => {
             if (payload.errors !== null) {
                 let errorMsg = ''
@@ -42,3 +45,4 @@ export function useFetchRealtimeData (tableName:string) {
 
     return {data, loading};
 }
+
