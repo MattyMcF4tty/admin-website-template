@@ -12,7 +12,6 @@ const VehicleTypeConfig = ({type}: {type: VehicleTypeSchema}) => {
   const [typeData, setTypeData] = useState<VehicleTypeSchema>(type)
 
   useEffect(() => {
-    console.log(allowSave)
     if (
       typeData.fuelType !== type.fuelType || 
       String(typeData.range) !== String(type.range) || 

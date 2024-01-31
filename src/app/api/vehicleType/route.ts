@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     try {
         const type = await fetchVehicleType(Number(id));
 
-        return new NextResponse(JSON.stringify({ message: 'Request completed successfully', data: type }), {
+        return new NextResponse(JSON.stringify({ message: 'Request completed successfully', type: type }), {
             status: 200,
             headers: {
               'Content-Type': 'application/json',
