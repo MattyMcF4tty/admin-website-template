@@ -3,7 +3,7 @@ interface GeoJSONPoint {
     coordinates: [number, number] // [longitude, latitude]
 }
   
-interface VehicleSchema {
+export interface VehicleSchema {
     id: string,
     createdAt: string,
     fuelPercentage: number,
