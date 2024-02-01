@@ -23,7 +23,7 @@ const VehicleTypeConfig = ({type}: {type: VehicleTypeSchema}) => {
     } else {
       setAllowSave(false)
     }
-  }, [typeData.fuelType, typeData.range, typeData.description, typeData.brand, typeData.model])
+  }, [typeData])
 
   function updateFields(key: keyof VehicleTypeSchema, value: string | number) {
     setTypeData(prev => ({ ...prev, [key]: value }));
