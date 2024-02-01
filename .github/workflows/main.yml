@@ -28,3 +28,10 @@ jobs:
 
     - name: Run Build
       run: npm run build --if-present
+      env:
+        COMPANY_NAME: ${{ secrets.COMPANY_NAME }}
+        NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        NEXT_PUBLIC_VEHICLE_TABLE: ${{ secrets.NEXT_PUBLIC_VEHICLE_TABLE }}
+        NEXT_PUBLIC_PREBOOK_TABLE: ${{ secrets.NEXT_PUBLIC_PREBOOK_TABLE }}
+        NEXT_PUBLIC_VEHICLE_TYPE_IMAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_VEHICLE_TYPE_IMAGE_BUCKET }}
