@@ -1,3 +1,4 @@
+import { VehicleSchema } from "@/src/schemas/vehicle";
 import { fetchRow, fetchTable } from "./database";
 
 const tableName = process.env.NEXT_PUBLIC_VEHICLE_TABLE as string;

@@ -8,5 +8,8 @@ export interface VehicleSchema {
     createdAt: string,
     fuelPercentage: number,
     type: number,
+    numberPlate: string,
+    state: string,
+    reserved: boolean,
 }
 
