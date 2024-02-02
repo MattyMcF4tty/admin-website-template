@@ -15,8 +15,13 @@ const AdminSidebar = () => {
         </div>
 
         {/* Vehicles */}
-        <div className='w-full px-2' id='prebooking'>
-          <AdminSidebarDropdown text='Vehicles' pages={['List', 'Config']}/>
+        <div className='w-full px-2' id='vehicles'>
+          <AdminSidebarDropdown text='Vehicles' pages={['List', 'Config',]}/>
+        </div>
+
+        {/* Social */}
+        <div className='w-full px-2' id='social'>
+          <AdminSidebarDropdown text='Social' pages={['Townsquare', 'Email',]}/>
         </div>
       </div>
 

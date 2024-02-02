@@ -28,7 +28,7 @@ const AdminSidebarDropdown = ({text, pages}: {text:string, pages: string[]}) => 
   return (
     <div className='w-full '>
       <button
-        className={`text-sm bg-white z-20 w-full text-left ${active ? 'font-semibold' : ''} ${urlMatch ? 'hover:cursor-default' : ''}`}
+        className={`text-sm bg-white z-20 w-full text-left flex justify-between ${active ? 'font-semibold' : ''} ${urlMatch ? 'hover:cursor-default' : ''}`}
         type='button' onClick={() => {
           if (!urlMatch)
           setActive(!active)
