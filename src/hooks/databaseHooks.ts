@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import getClient from "../utils/database/configs/supabaseConfig";
 import { PrebookSchema } from "../schemas/prebook";
 import { ErrorInternalServerError } from "../schemas/errors";
+import getClient from "../lib/utils/database/configs/supabaseConfig";
 
 
 /* Tables */
@@ -13,8 +13,6 @@ export function useRealtimeData(tableName:string) {
     const [data, setData] = useState<PrebookSchema | null>(null);
     const [loading, setLoading] = useState(true);
     
-
-
 
     const supabase = getClient();
     useEffect(() => {

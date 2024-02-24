@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: process.env.COMPANY_NAME,
+  title: `${process.env.COMPANY_NAME} Admin` ,
   description: 'Prebooking website template created by https://github.com/MattyMcF4tty',
 }
 

@@ -1,10 +1,11 @@
-import { fetchVehicleType } from '@/src/utils/database/fleetVehicleType';
-import { fetchVehicle } from '@/src/utils/database/fleetVehicles'
-import { fetchVehicleTypeImage } from '@/src/utils/database/storage/vehicleTypeImages';
 import { NextPage } from 'next'
 import Link from 'next/link';
 import React from 'react'
 import VehicleInfoBoard from './components/vehicleInfoBoard';
+import { fetchVehicle } from '@/src/lib/utils/database/fleetVehicles';
+import { fetchVehicleType } from '@/src/lib/utils/database/fleetVehicleType';
+import { fetchVehicleTypeImage } from '@/src/lib/utils/database/storage/vehicleTypeImages';
+
 
 export const revalidate = 0;
 
@@ -57,7 +58,6 @@ const VehiclePage = async ({params}: {params: { id: string}}) => {
 
         </div>
       </div>
-
     </div>
   )
 }

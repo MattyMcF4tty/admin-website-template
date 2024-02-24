@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import getClient from "../utils/database/configs/supabaseConfig";
 import { ErrorInternalServerError } from "../schemas/errors";
-import { fetchAllVehicles } from "../utils/database/fleetVehicles";
 import { VehicleSchema } from "../schemas/vehicle";
+import { fetchAllVehicles } from "../lib/utils/database/fleetVehicles";
+import getClient from "../lib/utils/database/configs/supabaseConfig";
 
 export function useRealtimeVehicles() {
     /* Setup returning data */

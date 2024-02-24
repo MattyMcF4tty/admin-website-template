@@ -1,7 +1,7 @@
 import { VehicleTypeSchema } from "@/src/schemas/vehicleType";
-import { fetchTable, fetchTableIds } from "@/src/utils/database/database";
 import { NextPage } from "next";
 import VehicleTypeConfig from "./components/vehicleTypeConfig";
+import { fetchTable } from "@/src/lib/utils/database/database";
 
 export const revalidate = 0;
 

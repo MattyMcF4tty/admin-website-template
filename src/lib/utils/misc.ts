@@ -1,4 +1,6 @@
+import { ClassValue, clsx } from "clsx";
 import { NextApiRequest } from "next";
+import { twMerge } from "tailwind-merge";
 
 export function NormalizePath(path: string): string {
     let normalizedPath = path;
@@ -23,4 +25,8 @@ export function verifyApiMethod(req:NextApiRequest, method:'GET' | 'POST' | 'PUT
     }
 
     return true
+}
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
 }

@@ -13,10 +13,13 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@supabase-cache-helpers/postgrest-swr": "^1.2.6",
     "@supabase/supabase-js": "^2.38.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "next": "^14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

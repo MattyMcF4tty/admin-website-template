@@ -1,4 +1,4 @@
-import { fetchVehicleType, patchVehicleType } from "@/src/utils/database/fleetVehicleType";
+import { fetchVehicleType, patchVehicleType } from "@/src/lib/utils/database/fleetVehicleType";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
