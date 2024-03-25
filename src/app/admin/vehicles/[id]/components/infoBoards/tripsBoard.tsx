@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-const TripsBoard = () => {
+interface TripsBoardProps {
+  
+}
+
+const TripsBoard: FC<TripsBoardProps> = ({}) => {
   return (
-    <div>TripsBoard</div>
+    <div>
+      TripsBoard
+    </div>
   )
 }
 

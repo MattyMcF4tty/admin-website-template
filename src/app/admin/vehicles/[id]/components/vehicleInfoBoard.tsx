@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from "react";
-import DetailsBoard from "./infoBoards/detailsBoard";
-import TripsBoard from "./infoBoards/tripsBoard";
-import DamagesBoard from "./infoBoards/damagesBoard";
-import LogsBoard from "./infoBoards/logsBoard";
-import TicketsBoard from "./infoBoards/ticketsBoard";
+import { useState } from "react";
+import DamagesBoard from "./infoBoards/DamagesBoard";
+import DetailsBoard from "./infoBoards/DetailsBoard";
+import TaskBoard from "./infoBoards/TaskBoard";
+import TicketsBoard from "./infoBoards/TicketsBoard";
+import TripsBoard from "./infoBoards/TripsBoard";
 
 
 const VehicleInfoBoard = () => {
@@ -41,7 +41,7 @@ const BoardNav = ({currentBoard, setCurrentBoard}: {currentBoard: string, setCur
       <button id='logs' onClick={(e) => setCurrentBoard((e.target as HTMLButtonElement).id)}
       className={`px-2 border-b h-full w-24
       ${currentBoard === 'logs' ? 'border-company-color-primary' : 'hover:border-company-color-primary'}`}>
-        Logs
+        Tasks
       </button>
       <button id='damages' onClick={(e) => setCurrentBoard((e.target as HTMLButtonElement).id)}
       className={`px-2 border-b h-full w-24
@@ -66,7 +66,7 @@ export const InfoBoard = ({currentBoard}: {currentBoard:string}) => {
     return <TripsBoard/>
   }
   else if (currentBoard === 'logs') {
-    return <LogsBoard/>
+    return <TaskBoard/>
   }
   else if (currentBoard === 'damages') {
     return <DamagesBoard/>
