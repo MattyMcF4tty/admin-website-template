@@ -9,18 +9,23 @@ const AdminSidebar = () => {
       {/* Buttons */}
       <div className='absolute w-full top-10'>
         {/* Prebooking */}
-        <div className='w-full px-2' id='prebooking'>
+        <div className='w-full px-2 mb-1' id='prebooking'>
           <AdminSidebarDropdown text='Prebooking' pages={['List', 'Config']}/>
         </div>
 
         {/* Vehicles */}
-        <div className='w-full px-2' id='vehicles'>
+        <div className='w-full px-2 mb-1' id='vehicles'>
           <AdminSidebarDropdown text='Vehicles' pages={['List', 'Config',]}/>
         </div>
 
         {/* Social */}
-        <div className='w-full px-2' id='social'>
+        <div className='w-full px-2 mb-1' id='social'>
           <AdminSidebarDropdown text='Social' pages={['Townsquare', 'Email',]}/>
+        </div>
+
+        {/* Damage */}
+        <div className='w-full px-2 mb-1' id='damage'>
+          <AdminSidebarDropdown text='Damage' pages={['Overview']}/>
         </div>
       </div>
 
