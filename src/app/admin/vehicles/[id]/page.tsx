@@ -5,6 +5,7 @@ import VehicleInfoBoard from './components/vehicleInfoBoard';
 import { fetchVehicle } from '@/src/lib/utils/database/fleetVehicles';
 import { fetchVehicleType } from '@/src/lib/utils/database/fleetVehicleType';
 import { fetchVehicleTypeImage } from '@/src/lib/utils/database/storage/vehicleTypeImages';
+import ContentBox from '@/src/components/ui/ContentBox';
 
 
 export const revalidate = 0;
@@ -20,7 +21,7 @@ const VehiclePage = async ({params}: {params: { id: string}}) => {
     <div className='grid grid-cols-4 gap-6 h-[calc(100vh-6rem)]'>
 
       {/* Info about vehicle */}
-      <div className='col-span-1 col-start-1 bg-white p-4 rounded-md shadow-md flex items-center flex-col'>
+      <ContentBox className='col-span-1 col-start-1 bg-white p-4 rounded-md shadow-md flex items-center flex-col'>
         <p className='w-full text-center text-xl font-semibold border-b h-[1.75rem]'>
           Overview
         </p>
@@ -35,29 +36,29 @@ const VehiclePage = async ({params}: {params: { id: string}}) => {
         <label htmlFor='vehicleStatus' className='w-full text-center text-sm border-b'>Status</label>
         <div id='vehicleStatus' className='w-full'>
 
-          <div className='my-2 rounded-md px-1 hover:shadow-lg duration-150'>
+          <div className='my-2 rounded-md px-1'>
             <label htmlFor='state' className='text-xs'>State</label>
             <p id='state'>{vehicle.state}</p>
           </div>
           
-          <div className='my-2 rounded-md px-1 hover:shadow-lg duration-150'>
+          <div className='my-2 rounded-md px-1'>
             <label htmlFor='reserved' className='text-xs'>Reserved</label>
             <p id='reserved'>{vehicle.reserved ? 'Yes' : 'No'}</p>
           </div>
 
-          <div className='my-2 rounded-md px-1 hover:shadow-lg duration-150'>
+          <div className='my-2 rounded-md px-1'>
             <label htmlFor='fuelPercentage' className='text-xs'>Fuel Percentage</label>
             <p id='fuelPercentage'>{vehicle.fuelPercentage}%</p>
           </div>
         </div>
-      </div>
+      </ContentBox>
 
-      <div className='col-span-3 col-start-2 bg-white rounded-md p-4 shadow-md flex flex-col'>
+      <ContentBox className='col-span-3 col-start-2 bg-white rounded-md p-4 shadow-md flex flex-col'>
         <VehicleInfoBoard/>
         <div>
 
         </div>
-      </div>
+      </ContentBox>
     </div>
   )
 }
