@@ -2,32 +2,37 @@ import { cn } from '@/src/lib/utils/misc'
 import { VariantProps, cva } from 'class-variance-authority'
 import React, { HTMLAttributes, forwardRef } from 'react'
 
-export const contentBoxVariants = cva('bg-white p-2 rounded-md shadow-md', {
+export const contentBoxVariants = cva('bg-white rounded-md shadow-md', {
     variants: {
         variant: {
             default: '',
         },
         size: {
             default: '',
+        },
+        padding: {
+            default: '',
+            small: 'p-2',
         }
     },
     defaultVariants: {
         variant: 'default',
-        size: 'default'
+        size: 'default',
+        padding: 'default'
     }
 })
 
-interface CanvasProps 
+interface ContentBoxProps 
     extends HTMLAttributes<HTMLDivElement>, 
         VariantProps<typeof contentBoxVariants> {
     isLoading?: boolean
 }
 
-const ContentBox = forwardRef<HTMLDivElement, CanvasProps>(({
-    className, children, variant, isLoading, size, ...props}, ref) => {
+const ContentBox = forwardRef<HTMLDivElement, ContentBoxProps>(({
+    className, children, variant, isLoading, size, padding, ...props}, ref) => {
     return (
         <div 
-        className={cn(contentBoxVariants({ variant, size, className }))}
+        className={cn(contentBoxVariants({ variant, size, padding, className }))}
         ref={ref}
         {...props}>
             {children}

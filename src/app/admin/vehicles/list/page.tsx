@@ -1,14 +1,16 @@
+import ContentBox from '@/src/components/ui/ContentBox'
 import { NextPage } from 'next'
 import React from 'react'
-import VehicleList from './components/vehicleList'
+import VehicleTable from './components/VehicleTable'
 
-const VehicleListPage:NextPage = () => {
+const VehicleListPage: NextPage = () => {
+
   return (
     <div>
-      VehicleLists
-      <div>
-        <VehicleList/>
-      </div>
+      VehicleListPage
+      <ContentBox>
+        <VehicleTable/>
+      </ContentBox>
     </div>
   )
 }

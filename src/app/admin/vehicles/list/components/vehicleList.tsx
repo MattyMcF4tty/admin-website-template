@@ -1,6 +1,6 @@
 'use client';
 
-import { useRealtimeVehicles } from '@/src/hooks/fleetVehiclesHook';
+import { useRealtimeVehicles } from '@/src/hooks/fleetVehiclesHooks';
 import { VehicleTypeSchema } from '@/src/schemas/vehicleType';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,46 +1,52 @@
-import { useEffect, useState } from "react";
-import { PrebookSchema } from "../schemas/prebook";
-import { ErrorInternalServerError } from "../schemas/errors";
-import getClient from "../lib/utils/database/configs/supabaseConfig";
-
+import { useEffect, useState } from 'react';
+import { PrebookSchema } from '../schemas/prebook';
+import { ErrorInternalServerError } from '../schemas/errors';
+import CreateSupabaseClient from '../lib/utils/database/configs/supabaseConfig';
 
 /* Tables */
-const vehicleTable = process.env.NEXT_PUBLIC_VEHICLE_TABLE as string
+const vehicleTable = process.env.NEXT_PUBLIC_VEHICLE_TABLE as string;
 
-export function useRealtimeData(tableName:string) {
-    const normalizedTableName = tableName.toLowerCase();
+export function useRealtimeData(tableName: string) {
+  const normalizedTableName = tableName.toLowerCase();
 
-    const [data, setData] = useState<PrebookSchema | null>(null);
-    const [loading, setLoading] = useState(true);
-    
+  const [data, setData] = useState<PrebookSchema | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    const supabase = getClient();
-    useEffect(() => {
-        const channel = supabase.channel(`realtime ${normalizedTableName}`).on('postgres_changes', {
-            event:'*', schema:'public', table: normalizedTableName
-        }, (payload) => {
-            if (payload.errors !== null) {
-                let errorMsg = ''
+  const supabase = CreateSupabaseClient();
+  useEffect(() => {
+    const channel = supabase
+      .channel(`realtime ${normalizedTableName}`)
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: normalizedTableName,
+        },
+        (payload) => {
+          if (payload.errors !== null) {
+            let errorMsg = '';
 
-                for (let index = 0; index < payload.errors.length; index++) {
-                    const error = payload.errors[index];
-                    if (index === 0) {
-                        errorMsg = `- ${error}`
-                    }
-                    errorMsg = errorMsg+`\n- ${error}`
-                }
-
-                throw new ErrorInternalServerError(errorMsg);
+            for (let index = 0; index < payload.errors.length; index++) {
+              const error = payload.errors[index];
+              if (index === 0) {
+                errorMsg = `- ${error}`;
+              }
+              errorMsg = errorMsg + `\n- ${error}`;
             }
 
-            setData(payload.new as PrebookSchema)
-        }).subscribe()
+            throw new ErrorInternalServerError(errorMsg);
+          }
 
-        return () => {
-            channel.unsubscribe();
+          setData(payload.new as PrebookSchema);
         }
-    }, [supabase]);
+      )
+      .subscribe();
 
-    return {data, loading};
+    return () => {
+      channel.unsubscribe();
+    };
+  }, [supabase]);
+
+  return { data, loading };
 }
-
