@@ -16,11 +16,11 @@ const SignUp: FC<SignUpProps> = ({}) => {
         padding={'small'}
         className="max-w-[35rem] max-h-[40rem] flex flex-col items-center "
       >
-        <h1 className="text-2xl">Sign In</h1>
+        <h1 className="text-2xl">Sign up</h1>
         <Inputfield name="email" type="email" />
         <Inputfield name="password" type="password" />
         <Button variant="default" type="submit">
-          Sign In
+          Sign up
         </Button>
       </ContentBox>
     </form>

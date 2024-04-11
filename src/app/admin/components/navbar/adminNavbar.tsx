@@ -1,18 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Button from '@/src/components/ui/Button';
 import { useRouter } from 'next/navigation';
+import { useSupabase } from '@/src/hooks/useSupabase';
+import { Session } from '@supabase/supabase-js';
 
 const AdminNavbar = () => {
   const router = useRouter();
-  async function handleSignOut() {
+  const { getSession } = useSupabase();
+  const [user, setUser] = useState<Session | null>(null);
+
+  useEffect(() => {
+    async function init() {
+      setUser(await getSession());
+    }
+
+    init();
+  }, []);
+
+  const handleSignOut = async () => {
     console.log('Signing out');
     await fetch('/api/auth/signout', {
       method: 'POST',
     });
-  }
+  };
 
   return (
     <div className="absolute w-screen bg-white h-12 flex flex-row justify-between shadow-lg border-b-2 border-company-color-primary">
@@ -24,12 +37,12 @@ const AdminNavbar = () => {
           {/* <p className='text-xs text-black font-semibold'>Admin</p> */}
         </div>
       </Link>
-
       <div>
         {/* When clicked call api endpoint /auth/signout */}
         <Button onClick={handleSignOut}>Sign Out</Button>
       </div>
       {/* User */}
+      {user && <div>{user.user.email}</div>}
     </div>
   );
 };
