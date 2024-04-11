@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import { VehicleType } from '../schemas/vehicleType';
+import { VehicleType, VehicleTypeSchema } from '../schemas/vehicleType';
 
 export const useVehicleTypes = () => {
   const getVehicleImage = (typeId: number) => {
@@ -25,8 +25,30 @@ export const useVehicleTypes = () => {
     return vehicletype;
   };
 
+  const getVehicleTypes = async (): Promise<VehicleType[]> => {
+    const { data, error } = await supabase
+      .from(process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!)
+      .select('*');
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    if (!data) {
+      return [];
+    }
+
+    const formattedVehicleTypes = data.map((vehicleData: VehicleTypeSchema) => {
+      const newVehicleType = new VehicleType(vehicleData);
+      return newVehicleType;
+    });
+
+    return formattedVehicleTypes;
+  };
+
   return {
     getVehicleImage,
     getVehicleType,
+    getVehicleTypes,
   };
 };
