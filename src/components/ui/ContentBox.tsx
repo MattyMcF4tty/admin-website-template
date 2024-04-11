@@ -1,45 +1,47 @@
-import { cn } from '@/src/lib/utils/misc'
-import { VariantProps, cva } from 'class-variance-authority'
-import React, { HTMLAttributes, forwardRef } from 'react'
+import { cn } from '@/src/utils/misc';
+import { VariantProps, cva } from 'class-variance-authority';
+import React, { HTMLAttributes, forwardRef } from 'react';
 
 export const contentBoxVariants = cva('bg-white rounded-md shadow-md', {
-    variants: {
-        variant: {
-            default: '',
-        },
-        size: {
-            default: '',
-        },
-        padding: {
-            default: '',
-            small: 'p-2',
-        }
+  variants: {
+    variant: {
+      default: '',
     },
-    defaultVariants: {
-        variant: 'default',
-        size: 'default',
-        padding: 'default'
-    }
-})
+    size: {
+      default: '',
+    },
+    padding: {
+      default: '',
+      small: 'p-2',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'default',
+    padding: 'default',
+  },
+});
 
-interface ContentBoxProps 
-    extends HTMLAttributes<HTMLDivElement>, 
-        VariantProps<typeof contentBoxVariants> {
-    isLoading?: boolean
+interface ContentBoxProps
+  extends HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof contentBoxVariants> {
+  isLoading?: boolean;
 }
 
-const ContentBox = forwardRef<HTMLDivElement, ContentBoxProps>(({
-    className, children, variant, isLoading, size, padding, ...props}, ref) => {
+const ContentBox = forwardRef<HTMLDivElement, ContentBoxProps>(
+  ({ className, children, variant, isLoading, size, padding, ...props }, ref) => {
     return (
-        <div 
+      <div
         className={cn(contentBoxVariants({ variant, size, padding, className }))}
         ref={ref}
-        {...props}>
-            {children}
-        </div>
-    )
-})
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
 ContentBox.displayName = 'ContentBox';
 
-export default ContentBox
+export default ContentBox;
