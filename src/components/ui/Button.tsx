@@ -1,4 +1,4 @@
-import { cn } from '@/src/utils/misc';
+import { cn } from '@/utils/misc';
 import { VariantProps, cva } from 'class-variance-authority';
 import React, { ButtonHTMLAttributes, forwardRef } from 'react';
 

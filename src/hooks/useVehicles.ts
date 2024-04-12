@@ -1,29 +1,24 @@
+/* !!!! Not quite sure how to use this !!!! */
+
+/* import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Vehicle, VehicleSchema } from '../schemas/vehicle';
+import { fetchVehicles } from '../utils/vehicles';
 
 export const useVehicles = () => {
-  const getVehicles = async (): Promise<Vehicle[]> => {
-    const { data, error } = await supabase
-      .from(process.env.NEXT_PUBLIC_VEHICLES_TABLE!)
-      .select('*');
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    if (!data) {
-      return [];
-    }
-
-    const formattedVehicles = data.map((vehicleData: VehicleSchema) => {
-      const newVehicle = new Vehicle(vehicleData);
-      return newVehicle;
-    });
-
-    return formattedVehicles;
+  const getVehicles = async () => {
+    setIsLoading(true);
+    setVehicles(await fetchVehicles());
+    setIsLoading(false);
   };
 
   const getVehicle = async (id: number): Promise<Vehicle> => {
+    setIsLoading(true);
+    
+
     const { data, error } = await supabase
       .from(process.env.NEXT_PUBLIC_VEHICLES_TABLE!)
       .select('*')
@@ -41,5 +36,8 @@ export const useVehicles = () => {
   return {
     getVehicles,
     getVehicle,
+    vehicles,
+    isLoading,
   };
 };
+ */
