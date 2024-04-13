@@ -35,7 +35,11 @@ const VehicleTable: FC<VehicleTableProps> = ({}) => {
       </div>
 
       {/* Table Body */}
-      {!vehicles ? <div>Loading</div> : vehicles.map((vehicle) => <TableRow vehicle={vehicle} />)}
+      {!vehicles ? (
+        <div>Loading</div>
+      ) : (
+        vehicles.map((vehicle) => <TableRow key={vehicle.id} vehicle={vehicle} />)
+      )}
     </div>
   );
 };
@@ -54,10 +58,12 @@ const TableRow = ({ vehicle }: { vehicle: Vehicle }) => {
 
     init();
   }, []);
+
+  const handleUpdate = () => {};
+
   return (
     <Link
       href={`${vehicle.id}`}
-      key={vehicle.id}
       className="flex flex-row border-b h-[44px] items-center hover:bg-slate-50"
     >
       <p className="w-[3.2%] text-center">{vehicle.id}</p>
@@ -68,7 +74,15 @@ const TableRow = ({ vehicle }: { vehicle: Vehicle }) => {
       <p className="w-[20.4%] text-center">Location</p>
       <p className="w-[8.7%] text-center">{vehicle.fuelPercentage}</p>
       <p className="w-[12.3%] text-center">Last trip</p>
-      <p className="w-[12.3%] text-center">{vehicle.state}</p>
+      <div className="w-[12.3%] text-center">
+        <select
+          className="bg-teal-500 h-[90%] w-[90%] rounded-sm z-30"
+          defaultValue={vehicle.state}
+          value={vehicle.state}
+        >
+          <option value="reposition">reposition</option>
+        </select>
+      </div>
       <p className="w-[21%] text-center">Tags</p>
     </Link>
   );

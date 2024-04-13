@@ -1,8 +1,8 @@
 import React from 'react';
-import VehicleInfoBoard from '../../../../../components/infoboards/vehicleInfoBoard';
+import VehicleInfoBoard from './components/vehicleInfoBoard';
 import { useVehicleTypes } from '@/hooks/useVehicleTypes';
-import ContentBox from '@/components/ui/contentBox';
 import { getVehicle } from '@/utils/vehicles';
+import ContentBox from '@/components/ui/contentBox';
 
 export const revalidate = 0;
 

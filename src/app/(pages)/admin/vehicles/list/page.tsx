@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import React from 'react';
 import ContentBox from '@/components/ui/contentBox';
-import VehicleTable from '@/components/tables/vehicleTable';
+import VehicleTable from './components/vehicleTable';
 
 const VehicleListPage: NextPage = () => {
   return (

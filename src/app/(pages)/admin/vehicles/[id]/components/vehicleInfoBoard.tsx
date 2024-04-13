@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import DamagesBoard from './DamagesBoard';
-import DetailsBoard from './DetailsBoard';
-import TaskBoard from './TaskBoard';
-import TicketsBoard from './TicketsBoard';
-import TripsBoard from './TripsBoard';
+import DetailsBoard from './detailsBoard';
+import TripsBoard from './tripsBoard';
+import TaskBoard from './daskBoard';
+import DamagesBoard from './damagesBoard';
+import TicketsBoard from './ticketsBoard';
 
 const VehicleInfoBoard = () => {
   const [currentBoard, setCurrentBoard] = useState('details');

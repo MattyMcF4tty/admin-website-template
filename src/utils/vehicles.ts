@@ -56,3 +56,27 @@ export const deleteVehicle = async (id: number) => {
     throw new Error(error.message);
   }
 };
+
+/**
+ *
+ */
+export const queryVehicles = async () => {
+  /*   const { data, error } = await supabase.from(vehicleTable).select('*').eq([]); */
+};
+
+/**
+ *
+ */
+export const updateVehicle = async (updatedVehicle: Vehicle) => {
+  const vehicleData = updatedVehicle.toPlainObject();
+  const JSONVehicle = JSON.stringify(vehicleData);
+
+  const { error } = await supabase
+    .from(vehicleTable)
+    .update(JSONVehicle)
+    .eq('id', `${updatedVehicle.id}`);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+};

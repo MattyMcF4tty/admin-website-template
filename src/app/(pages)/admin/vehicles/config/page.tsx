@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
-import ContentBox from '@/components/ui/contentBox';
 import { useVehicleTypes } from '@/hooks/useVehicleTypes';
-import VehicleTypeList from '@/components/lists/vehicleTypeList';
+import VehicleTypeList from '@/app/(pages)/admin/vehicles/config/components/vehicleTypeList';
+import ContentBox from '@/components/ui/contentBox';
 
 export const revalidate = 0;
 

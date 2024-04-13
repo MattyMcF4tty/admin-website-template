@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import ContentBox from '../ui/contentBox';
+import ContentBox from '@/components/ui/contentBox';
+import { useState } from 'react';
 
 const VehicleTypeList = () => {
   const [types, setTypes] = useState(null);
