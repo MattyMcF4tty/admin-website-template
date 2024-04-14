@@ -25,6 +25,8 @@ const AdminNavbar = () => {
     await fetch('/api/auth/signout', {
       method: 'POST',
     });
+
+    router.push('/');
   };
 
   return (
