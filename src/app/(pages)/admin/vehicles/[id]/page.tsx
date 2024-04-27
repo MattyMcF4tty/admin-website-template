@@ -6,19 +6,20 @@ import ContentBox from '@/components/ui/contentBox';
 
 export const revalidate = 0;
 
-const VehiclePage = async ({ params }: { params: { id: string } }) => {
-  const { getVehicleImage } = useVehicleTypes();
-
-  const id = Number(params.id);
+const VehiclePage = async ({ params }: { params: { id: number } }) => {
+  const id = params.id;
   const vehicle = await getVehicle(id);
-  const imageUrl = getVehicleImage(vehicle.type);
+
+  if (!vehicle) {
+    return <div>No vehicle data</div>;
+  }
 
   return (
     <div className="grid grid-cols-4 gap-6 h-[calc(100vh-6rem)]">
       {/* Info about vehicle */}
       <ContentBox className="col-span-1 col-start-1 bg-white p-4 rounded-md shadow-md flex items-center flex-col">
         <p className="w-full text-center text-xl font-semibold border-b h-[1.75rem]">Overview</p>
-        <img src={imageUrl} alt="Image of vehicle type" className="rounded-md mb-2" />
+        <img src={'imageUrl'} alt="Image of vehicle type" className="rounded-md mb-2" />
         <h1 className="text-lg hover:text-xl duration-150 hover:cursor-pointer">
           {vehicle.numberPlate}
         </h1>

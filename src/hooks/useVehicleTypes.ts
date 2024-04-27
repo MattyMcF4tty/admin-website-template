@@ -1,8 +1,15 @@
-import { supabase } from '../lib/supabase';
-import { VehicleType, VehicleTypeSchema } from '../schemas/vehicleType';
+'use client';
+
+import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
+import { VehicleTypeSchema } from '@/schemas/vehicleType';
+import { getVehicleTypes } from '@/utils/vehicleTypes';
 
 export const useVehicleTypes = () => {
-  const getVehicleImage = (typeId: number) => {
+  const [vehicleTypes, setVehicleTypes] = useState<VehicleTypeSchema[]>([]);
+  const [loadingVehicleTypes, setLoadingVehicleTypes] = useState<boolean>(false);
+
+  const useGetVehicleImage = (typeId: number) => {
     const { data } = supabase.storage
       .from(process.env.NEXT_PUBLIC_VEHICLE_TYPE_BUCKET!)
       .getPublicUrl(`${typeId}/image.png`);
@@ -10,7 +17,7 @@ export const useVehicleTypes = () => {
     return data.publicUrl;
   };
 
-  const getVehicleType = async (typeId: number) => {
+  const useGetVehicleType = async (typeId: number) => {
     const { data, error } = await supabase
       .from(process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!)
       .select('*')
@@ -20,35 +27,22 @@ export const useVehicleTypes = () => {
       throw new Error(error.message);
     }
 
-    const vehicletype: VehicleType = data[0];
+    const vehicletype: VehicleTypeSchema = data[0];
 
     return vehicletype;
   };
 
-  const getVehicleTypes = async (): Promise<VehicleType[]> => {
-    const { data, error } = await supabase
-      .from(process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!)
-      .select('*');
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    if (!data) {
-      return [];
-    }
-
-    const formattedVehicleTypes = data.map((vehicleData: VehicleTypeSchema) => {
-      const newVehicleType = new VehicleType(vehicleData);
-      return newVehicleType;
-    });
-
-    return formattedVehicleTypes;
+  const useGetVehicleTypes = async () => {
+    setLoadingVehicleTypes(true);
+    setVehicleTypes(await getVehicleTypes());
+    setLoadingVehicleTypes(false);
   };
 
   return {
-    getVehicleImage,
-    getVehicleType,
-    getVehicleTypes,
+    useGetVehicleImage,
+    useGetVehicleType,
+    useGetVehicleTypes,
+    vehicleTypes,
+    loadingVehicleTypes,
   };
 };

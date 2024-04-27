@@ -8,7 +8,7 @@ export interface VehicleTypeSchema {
   createdAt: Date;
 }
 
-export class VehicleType implements VehicleTypeSchema {
+/* export class VehicleType implements VehicleTypeSchema {
   id: string;
   brand: string;
   model: string;
@@ -27,3 +27,4 @@ export class VehicleType implements VehicleTypeSchema {
     this.createdAt = vehicleTypeData.createdAt;
   }
 }
+ */

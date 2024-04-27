@@ -14,6 +14,7 @@ const AdminNavbar = () => {
 
   useEffect(() => {
     async function init() {
+      console.log('getting session');
       setUser(await getSession());
     }
 

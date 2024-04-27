@@ -1,14 +1,14 @@
 import { supabase } from '../lib/supabase';
-import { Vehicle, VehicleSchema } from '../schemas/vehicle';
+import { VehicleSchema } from '../schemas/vehicle';
 
 const vehicleTable = process.env.NEXT_PUBLIC_VEHICLES_TABLE!;
 
 /**
  * Returns all vehicles in table. Supabase limits to 1000.
- * @returns {Promise<Vehicle[]>} - Returns an array of Vehicle classes
+ * @returns {Promise<Vehicle[]>} - Returns an array of vehicles
  */
-export const getVehicles = async (): Promise<Vehicle[]> => {
-  const { data, error } = await supabase.from(vehicleTable).select('*');
+export const getVehicles = async (): Promise<VehicleSchema[]> => {
+  const { data, error } = await supabase.from(vehicleTable).select('*').order('id');
 
   if (error) {
     throw new Error(error.message);
@@ -18,11 +18,7 @@ export const getVehicles = async (): Promise<Vehicle[]> => {
     return [];
   }
 
-  const formattedVehicles = data.map((vehicleData: VehicleSchema) => {
-    return new Vehicle(vehicleData);
-  });
-
-  return formattedVehicles;
+  return data;
 };
 
 /**
@@ -30,7 +26,7 @@ export const getVehicles = async (): Promise<Vehicle[]> => {
  * @param id - The id of the vehicle.
  * @returns {Promise<Vehicle | null>} - Returns single Vehicle or null if no vehicle was found.
  */
-export const getVehicle = async (id: number): Promise<Vehicle> => {
+export const getVehicle = async (id: number): Promise<VehicleSchema | null> => {
   const { data, error } = await supabase
     .from(process.env.NEXT_PUBLIC_VEHICLES_TABLE!)
     .select('*')
@@ -40,8 +36,7 @@ export const getVehicle = async (id: number): Promise<Vehicle> => {
     throw new Error(error.message);
   }
 
-  const vehicleData: VehicleSchema = data[0];
-  return new Vehicle(vehicleData);
+  return data[0];
 };
 
 /**
@@ -58,25 +53,53 @@ export const deleteVehicle = async (id: number) => {
 };
 
 /**
- *
+ * Takes ID from updated vehicle object and updates vehicle cells in database to match.
+ * @param updatedVehicle - The updated vehicle object.
  */
-export const queryVehicles = async () => {
-  /*   const { data, error } = await supabase.from(vehicleTable).select('*').eq([]); */
-};
-
-/**
- *
- */
-export const updateVehicle = async (updatedVehicle: Vehicle) => {
-  const vehicleData = updatedVehicle.toPlainObject();
-  const JSONVehicle = JSON.stringify(vehicleData);
+export const updateVehicle = async (vehicleData: VehicleSchema) => {
+  console.log('updating vehicle');
 
   const { error } = await supabase
     .from(vehicleTable)
-    .update(JSONVehicle)
-    .eq('id', `${updatedVehicle.id}`);
+    .update(vehicleData)
+    .eq('id', `${vehicleData.id}`);
 
   if (error) {
     throw new Error(error.message);
   }
+};
+
+export const countVehicles = async (): Promise<number> => {
+  const { count, error } = await supabase.from(vehicleTable).select('*', { count: 'exact' });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return count || NaN;
+};
+
+export const queryVehicles = async (
+  col: string | undefined, // Column to search within
+  search: string | undefined, // Search term for the 'col'
+  filterCol: string | undefined, // Column to apply filter on
+  ascending: boolean | undefined // Boolean for sort order, true for ascending
+): Promise<VehicleSchema[]> => {
+  let query = supabase.from(vehicleTable).select('*');
+
+  if (search && col) {
+    query = query.ilike(col, search);
+  }
+
+  if (filterCol) {
+    query = query.order(filterCol, { ascending: ascending || false });
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 };

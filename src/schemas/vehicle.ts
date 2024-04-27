@@ -1,30 +1,25 @@
-interface GeoJSONPoint {
-  type: 'Point';
-  coordinates: [number, number]; // [longitude, latitude]
-}
-
 export interface VehicleSchema {
-  id: string;
+  id: number;
   createdAt: string;
   fuelPercentage: number;
   type: number;
   numberPlate: string;
-  state: string;
+  state: number;
   reserved: boolean;
 }
 
-export class Vehicle implements VehicleSchema {
-  id: string;
+/* export class Vehicle implements VehicleSchema {
+  id: number;
   createdAt: string;
   fuelPercentage: number;
   type: number;
   numberPlate: string;
-  state: string;
+  state: number;
   reserved: boolean;
 
-  /**
+  *
    * Takes object as VehicleTypeSchema and creates Vehicle Class
-   */
+  
   constructor(vehicleData: VehicleSchema) {
     this.id = vehicleData.id;
     this.createdAt = vehicleData.createdAt;
@@ -46,4 +41,4 @@ export class Vehicle implements VehicleSchema {
       reserved: this.reserved,
     };
   }
-}
+} */

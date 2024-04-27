@@ -1,45 +1,46 @@
+'use client';
+
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
-import { Vehicle, VehicleSchema } from '../schemas/vehicle';
-import { getVehicle, getVehicles, updateVehicle } from '@/utils/vehicles';
+import { VehicleSchema } from '../schemas/vehicle';
+import { countVehicles, getVehicles, updateVehicle } from '@/utils/vehicles';
+import { supabase } from '@/lib/supabase';
 
 export const useVehicles = () => {
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [vehicles, setVehicles] = useState<VehicleSchema[]>([]);
+  const [loadingVehicles, setLoadingVehicles] = useState<boolean>(false);
 
   /**
    *
    */
   const useGetVehicles = async () => {
-    setIsLoading(true);
+    setLoadingVehicles(true);
     setVehicles(await getVehicles());
-    setIsLoading(false);
-  };
-
-  /**
-   *
-   */
-  const useCountVehicles = async () => {
-    setIsLoading(true);
-
-    setIsLoading(false);
+    setLoadingVehicles(false);
   };
 
   /**
    *
    * @param updatedVehicles
    */
-  const useUpdateVehicles = async (updatedVehicles: Vehicle[]) => {
-    setIsLoading(true);
+  const useUpdateVehicles = async (updatedVehicles: VehicleSchema[]) => {
     for (const updatedVehicle of updatedVehicles) {
       await updateVehicle(updatedVehicle);
+      setVehicles((prevVehicles) =>
+        prevVehicles.map((v) => (v.id === updatedVehicle.id ? updatedVehicle : v))
+      );
     }
-    setIsLoading(false);
+  };
+
+  const useCountVehicles = async () => {
+    const vehicleCount = await countVehicles();
+    return vehicleCount;
   };
 
   return {
     useGetVehicles,
+    useUpdateVehicles,
+    useCountVehicles,
     vehicles,
-    isLoading,
+    loadingVehicles,
   };
 };
