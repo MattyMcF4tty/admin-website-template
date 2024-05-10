@@ -1,16 +1,21 @@
+'use client';
+
 import React, { FC } from 'react';
 import TableHead from './tableHead';
 import TableBody from './tableBody';
 import TableFooter from './tableFooter';
+import { useVehicles } from '@/hooks/useVehicles';
 
 interface VehicleTableProps {}
 
 const VehicleTable: FC<VehicleTableProps> = ({}) => {
+  const { vehicles, loading, goToPage, updateVehicle, totalPages } = useVehicles(20);
+
   return (
-    <table className="w-full h-full">
+    <table className="relative w-full h-full">
       <TableHead />
-      <TableBody />
-      <TableFooter />
+      <TableBody vehicles={vehicles} loading={loading} onVehicleUpdate={updateVehicle} />
+      <TableFooter loading={loading} onPageChange={goToPage} totalPages={totalPages} />
     </table>
   );
 };

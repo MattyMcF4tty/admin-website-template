@@ -1,15 +1,33 @@
-'use client';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { VehicleTypeSchema } from '@/schemas/vehicleType';
 import { getVehicleTypes } from '@/utils/vehicleTypes';
 
+const vehicleTypeTable = process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!;
+
 export const useVehicleTypes = () => {
   const [vehicleTypes, setVehicleTypes] = useState<VehicleTypeSchema[]>([]);
-  const [loadingVehicleTypes, setLoadingVehicleTypes] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const useGetVehicleImage = (typeId: number) => {
+  useEffect(() => {
+    const fetchVehicleTypes = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from(vehicleTypeTable).select('*').order('id');
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      if (data) {
+        setVehicleTypes(data);
+      }
+
+      setLoading(false);
+    };
+    fetchVehicleTypes();
+  }, []);
+
+  const getVehicleImage = (typeId: number) => {
     const { data } = supabase.storage
       .from(process.env.NEXT_PUBLIC_VEHICLE_TYPE_BUCKET!)
       .getPublicUrl(`${typeId}/image.png`);
@@ -17,32 +35,9 @@ export const useVehicleTypes = () => {
     return data.publicUrl;
   };
 
-  const useGetVehicleType = async (typeId: number) => {
-    const { data, error } = await supabase
-      .from(process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!)
-      .select('*')
-      .eq('id', `${typeId}`);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const vehicletype: VehicleTypeSchema = data[0];
-
-    return vehicletype;
-  };
-
-  const useGetVehicleTypes = async () => {
-    setLoadingVehicleTypes(true);
-    setVehicleTypes(await getVehicleTypes());
-    setLoadingVehicleTypes(false);
-  };
-
   return {
-    useGetVehicleImage,
-    useGetVehicleType,
-    useGetVehicleTypes,
+    getVehicleImage,
     vehicleTypes,
-    loadingVehicleTypes,
+    loading,
   };
 };

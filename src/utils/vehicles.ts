@@ -4,11 +4,19 @@ import { VehicleSchema } from '../schemas/vehicle';
 const vehicleTable = process.env.NEXT_PUBLIC_VEHICLES_TABLE!;
 
 /**
- * Returns all vehicles in table. Supabase limits to 1000.
- * @returns {Promise<Vehicle[]>} - Returns an array of vehicles
+ * Returns all vehicles in table, optionally limited by a specified count.
+ * Supabase has a default limit to 1000 if not specified.
+ * @param {number | null} [limit=null] - Maximum number of vehicles to return. If null, no explicit limit is set.
+ * @returns {Promise<VehicleSchema[]>} - Returns an array of vehicles
  */
-export const getVehicles = async (): Promise<VehicleSchema[]> => {
-  const { data, error } = await supabase.from(vehicleTable).select('*').order('id');
+export const getVehicles = async (limit: number | null = null): Promise<VehicleSchema[]> => {
+  let query = supabase.from(vehicleTable).select('*').order('id');
+
+  if (limit) {
+    query = query.limit(limit);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     throw new Error(error.message);

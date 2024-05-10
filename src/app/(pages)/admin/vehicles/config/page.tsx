@@ -6,8 +6,8 @@ import ContentBox from '@/components/ui/contentBox';
 export const revalidate = 0;
 
 const VehicleConfigPage: NextPage = async () => {
-  const { getVehicleTypes } = useVehicleTypes();
-  const vehicleTypes = await getVehicleTypes();
+  const { useGetVehicleTypes, vehicleTypes } = useVehicleTypes();
+  await useGetVehicleTypes();
 
   return (
     <div>

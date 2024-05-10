@@ -1,11 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 interface TableHeadProps {}
 
 const TableHead: FC<TableHeadProps> = ({}) => {
-  /* Store widths in variable */
   return (
-    <thead className="w-full border-b border-company-color-primary">
+    <thead className="sticky top-0 bg-white">
       <tr className="w-full">
         <th className="w-[3.2%] text-center">ID</th>
         <th className="w-[7.9%] text-center">Numberplate</th>
@@ -15,6 +14,9 @@ const TableHead: FC<TableHeadProps> = ({}) => {
         <th className="w-[12.3%] text-center">Last trip</th>
         <th className="w-[12.3%] text-center">State</th>
         <th className="w-[21%] text-center">Tags</th>
+      </tr>
+      <tr>
+        <td colSpan={8} className="bg-company-color-primary h-[1px]" />
       </tr>
     </thead>
   );

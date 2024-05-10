@@ -2,6 +2,7 @@ export interface VehicleStateSchema {
   id: number;
   name: string;
   color: string;
+  textColor: string;
 }
 
 /* export class VehicleState implements VehicleStateSchema {

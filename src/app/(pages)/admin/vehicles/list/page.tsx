@@ -5,8 +5,8 @@ import VehicleTable from './components/vehicleTable';
 
 const VehicleListPage: NextPage = () => {
   return (
-    <div>
-      <ContentBox>
+    <div className="h-full">
+      <ContentBox className="h-full overflow-y-auto">
         <VehicleTable />
       </ContentBox>
     </div>
