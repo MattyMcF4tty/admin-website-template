@@ -7,7 +7,7 @@ const VehicleListPage: NextPage = () => {
   return (
     <div className="h-full">
       <ContentBox className="h-full overflow-y-auto">
-        <VehicleTable />
+        <VehicleTable vehiclesPerPage={20} />
       </ContentBox>
     </div>
   );

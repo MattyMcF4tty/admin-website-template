@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { VehicleTypeSchema } from '@/schemas/vehicleType';
-import { getVehicleTypes } from '@/utils/vehicleTypes';
 
 const vehicleTypeTable = process.env.NEXT_PUBLIC_VEHICLE_TYPES_TABLE!;
 

@@ -17,7 +17,7 @@ export const useVehicles = (perPage: number = 20) => {
 
   //Fetch data on initializtion
   useEffect(() => {
-    const fetchVehicles = async () => {
+    const handleFetchVehicles = async () => {
       setLoading(true);
       const { data, error, count } = await supabase
         .from(vehicleTable)
@@ -39,7 +39,7 @@ export const useVehicles = (perPage: number = 20) => {
 
       setLoading(false);
     };
-    fetchVehicles();
+    handleFetchVehicles();
   }, [currentPage, perPage]);
 
   const updateVehicle = async (updatedVehicle: VehicleSchema) => {

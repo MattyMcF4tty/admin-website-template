@@ -6,8 +6,8 @@ import ContentBox from '@/components/ui/contentBox';
 export const revalidate = 0;
 
 const VehicleConfigPage: NextPage = async () => {
-  const { useGetVehicleTypes, vehicleTypes } = useVehicleTypes();
-  await useGetVehicleTypes();
+  /*   const { vehicleTypes } = useVehicleTypes();
+  await useGetVehicleTypes(); */
 
   return (
     <div>
@@ -22,11 +22,11 @@ const VehicleConfigPage: NextPage = async () => {
 
       {/* Type rules */}
       <div>
-        {vehicleTypes.map((type) => (
+        {/*         {vehicleTypes.map((type) => (
           <div key={type.id} className="mb-2">
             <VehicleTypeList />
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -1,17 +1,21 @@
+'use client';
+
 import React from 'react';
 import VehicleInfoBoard from './components/vehicleInfoBoard';
-import { useVehicleTypes } from '@/hooks/useVehicleTypes';
-import { getVehicle } from '@/utils/vehicles';
 import ContentBox from '@/components/ui/contentBox';
+import useVehicle from '@/hooks/useVehicle';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
-export const revalidate = 0;
+const VehiclePage: NextPage = () => {
+  const router = useRouter();
+  const { id } = router.query; // id will be a string or undefined
 
-const VehiclePage = async ({ params }: { params: { id: number } }) => {
-  const id = params.id;
-  const vehicle = await getVehicle(id);
+  const { vehicle, loading } = useVehicle(Number(id));
 
-  if (!vehicle) {
-    return <div>No vehicle data</div>;
+  console.log(vehicle);
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -21,10 +25,10 @@ const VehiclePage = async ({ params }: { params: { id: number } }) => {
         <p className="w-full text-center text-xl font-semibold border-b h-[1.75rem]">Overview</p>
         <img src={'imageUrl'} alt="Image of vehicle type" className="rounded-md mb-2" />
         <h1 className="text-lg hover:text-xl duration-150 hover:cursor-pointer">
-          {vehicle.numberPlate}
+          {vehicle!.numberPlate}
         </h1>
         <h2 className="text-xs hover:text-sm duration-150 hover:cursor-pointer mb-5 hover:mb-4">
-          {vehicle.id}
+          {vehicle!.id}
         </h2>
         <label htmlFor="vehicleStatus" className="w-full text-center text-sm border-b">
           Status
@@ -34,21 +38,21 @@ const VehiclePage = async ({ params }: { params: { id: number } }) => {
             <label htmlFor="state" className="text-xs">
               State
             </label>
-            <p id="state">{vehicle.state}</p>
+            <p id="state">{vehicle!.state}</p>
           </div>
 
           <div className="my-2 rounded-md px-1">
             <label htmlFor="reserved" className="text-xs">
               Reserved
             </label>
-            <p id="reserved">{vehicle.reserved ? 'Yes' : 'No'}</p>
+            <p id="reserved">{vehicle!.reserved ? 'Yes' : 'No'}</p>
           </div>
 
           <div className="my-2 rounded-md px-1">
             <label htmlFor="fuelPercentage" className="text-xs">
               Fuel Percentage
             </label>
-            <p id="fuelPercentage">{vehicle.fuelPercentage}%</p>
+            <p id="fuelPercentage">{vehicle!.fuelPercentage}%</p>
           </div>
         </div>
       </ContentBox>

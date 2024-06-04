@@ -6,10 +6,12 @@ import TableBody from './tableBody';
 import TableFooter from './tableFooter';
 import { useVehicles } from '@/hooks/useVehicles';
 
-interface VehicleTableProps {}
+interface VehicleTableProps {
+  vehiclesPerPage: number;
+}
 
-const VehicleTable: FC<VehicleTableProps> = ({}) => {
-  const { vehicles, loading, goToPage, updateVehicle, totalPages } = useVehicles(20);
+const VehicleTable: FC<VehicleTableProps> = ({ vehiclesPerPage }) => {
+  const { vehicles, loading, goToPage, updateVehicle, totalPages } = useVehicles(vehiclesPerPage);
 
   return (
     <table className="relative w-full h-full">
